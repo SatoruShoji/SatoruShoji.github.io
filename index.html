@@ -1,1 +1,44 @@
-Hello World
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>私のホームページ</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="default.css">
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]] } });
+</script>
+<script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<meta http-equiv="X-UA-Compatible" CONTENT="IE=EmulateIE7" />
+</head>
+<body>
+
+<h1>私のホームページ</h1>
+
+<h2>Jupyter Notebooks</h2>
+私がJuliaで書いたモジュールたち。
+<ul>
+    <li>EigenDecomposedMatrices.jl</li>
+    <p>「対角化された行列型」を扱うモジュール。例えば行列$A$は固定で、いろいろな定数$a$に対し$exp(aA)$を求めたいとする。行列の指数関数を対角化$A=PDP^{-1}$（$P$は正則行列、$D$は対角行列）によって$\exp(A)=P\exp(D)P^{-1}$で求めることを考えると、$aA$を毎回対角化するよりも$\exp(aA)=P\exp(aD)P^{-1}$としたほうが計算量が小さくなる。（対角行列の指数関数は単に対角要素に指数関数を作用させれば良い。）</p>
+<p>EigenDecomposedMatrices.jlでは、$PDP^{-1}$をラップした型を提供し、それに対し前述の効率的な演算および「普通の」行列として扱えるように基本的な関数群を実装する。</p>
+
+    <li>RepeatedVectors.jl</li>
+    <p>$A = \sum_i\sigma_i$を対角化したいとする。ここで$\sigma_i$は部分系$i$に作用するパウリ演算子である。$A$の固有値は1と-1のみであり（しかもそれが半分ずつ）、これをそのままメモリに置くのは時間的・空間的に効率が悪い。</p>
+    <p>RepeatedVectors.jlは「繰り返しを表す遅延評価のベクトル」を提供する。つまり対角成分が[1,-1,1,-1...]である対角行列を効率的に持つする型を提供する。</p>
+
+    <li>LazyArrays.jl</li>
+    <p>RepeatedVectors.jlを一般化して、配列（1次元、2次元に限らない）を「インデックスから要素への関数」と「配列のサイズ」で表現する。</p>
+
+    <li>SparseMatricesCSR.jl</li>
+    <p><a href="https://github.com/gridap/SparseMatricesCSR.jl">同名のこのパッケージ</a>とは独立である。</p>
+    <p>CSR形式の疎行列を表す型と、標準的なインターフェースを実装した。相当な手抜き実装だが動けばよいのだ。</p>
+
+    <li>ProgressWriters.jl</li>
+    <p>計算がどれくらいの進捗なのかを確認したい。そのためのパッケージとしてProgressBars.jlやProgressMeter.jlがある。が、SSHとJupyterを用いてリモートの計算機で、数時間～数週間かかる計算を行うときSSHが途切れたりなどすると進捗が見れなくなってしまう。</p>
+    <p>ProgressWriters.jlでは進捗状況をファイルに書き出すことでJupyterに再接続できなくなっても、別のSSHのセッションからでも進捗を確認できる。</p>
+</ul>
+
+</body>
+</html>
