@@ -1,3 +1,6 @@
+"""
+kqd
+"""
 function kqd(hamilt::AbstractBlock, init::ArrayReg, dt::Real, d::Int)
     psi = [apply(init, TimeEvolution(hamilt, t)) for t in range(start=0, step=dt, length=d)]
     H = Matrix{ComplexF64}(undef, d, d)
