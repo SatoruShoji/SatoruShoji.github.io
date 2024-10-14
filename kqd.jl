@@ -13,6 +13,9 @@ function kqd(hamilt::AbstractBlock, init::ArrayReg, dt::Real, d::Int)
     (;val = vals[1], vec = vecs[:,1])
 end
 
+"""
+kqd_trotterization
+"""
 function kqd(hamilts::AbstractVector{Tb}, init::ArrayReg, dt::Real, d::Int) where {Tb<:AbstractBlock}
     nq = nqubits(init)
     te = chain(nq, [TimeEvolution(hamilts[i], dt) for i in 1:length(hamilts)]...)
