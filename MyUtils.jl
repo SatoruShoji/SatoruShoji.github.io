@@ -23,6 +23,9 @@ using Dates
 import Serialization
 export safe_serialize, deserialize
 
+"""
+Safe version of Base.serialize. 
+"""
 function safe_serialize(fn::String, dat)
     fls = readdir()
     if findfirst(x->x==fn, fls) == nothing
