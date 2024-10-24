@@ -212,8 +212,6 @@ function exact_st_evolution(init::AbstractArrayReg, hamilt::AbstractBlock, n::In
             flush(io)
         end
     end
-    println(io, "")
-    flush(io)
     ret
 end
 
